@@ -8,9 +8,21 @@
 </div>
 <div class="col">
 <form action="?m=penjualan&s=simpan" method="post">
+    <?php
+    require_once('koneksi.php');
+    $sql = "SELECT id, nama FROM supplier ORDER BY nama";
+    $query = mysqli_query($koneksi, $sql);
+    ?>
     <div class="mb-2">
-        <label for="">Supplier Id</label>
-        <input type="number" name="supplier_id" class="form-control" autofocus>
+        <label for="">Nama Supplier</label>
+       <select name="supplier_id" class="form-control" required autofocus>
+           <?php
+           while($r=mysqli_fetch_array($query)) {
+           ?>
+                <option value="<?=$r['id']?>"><?=$r['nama']?></option>
+                <?php } ?>
+                ?>
+       </select>
     </div>
     <div class="mb-2">
         <label for="">total</label>
